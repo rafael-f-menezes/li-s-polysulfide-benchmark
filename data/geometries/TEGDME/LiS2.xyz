@@ -1,0 +1,5 @@
+3
+LiS2  q=0  n_Li=1  x=2  solvent=TEGDME  M06-2X/def2-TZVPPD/SMD optimised geometry
+S      -0.34998411     -0.95270792      0.00000000
+S       0.00000000      1.01493506      0.00000000
+Li      1.86658193     -0.33187805     -0.00000000

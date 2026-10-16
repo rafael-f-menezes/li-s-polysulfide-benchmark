@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Li–S Polysulfide Benchmark — Interactive Dataset</title>
+<meta name="description" content="Interactive companion dataset for a first-principles coupled-cluster benchmark of lithium polysulfide speciation in Li–S batteries.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='7' fill='%23FFFF27'/%3E%3Ccircle cx='22' cy='16' r='5' fill='%2369F8F7'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+// Surface any script error on the page itself (the site runs from file:// with no console in sight).
+window.addEventListener("error", function (e) {
+  var b = document.getElementById("js-error");
+  if (!b) return;
+  b.hidden = false;
+  b.textContent = "Script error: " + e.message + " (" + String(e.filename || "").split("/").pop() + ":" + e.lineno + ")";
+});
+</script>
+</head>
+<body>
+<div id="js-error" class="js-error" hidden></div>
+<header class="site-header">
+  <div class="brand">
+    <span class="logo" aria-hidden="true"><span class="atom-s"></span><span class="atom-li"></span></span>
+    <div>
+      <div class="brand-title">Li–S Polysulfide Benchmark</div>
+      <div class="brand-sub">Interactive companion dataset</div>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Sections">
+    <button class="tab active" data-tab="intro">Introduction</button>
+    <button class="tab" data-tab="geometries">Optimized Geometries</button>
+    <button class="tab" data-tab="energies">Energies &amp; Thermodynamics</button>
+    <button class="tab" data-tab="qtaim">Bonding &amp; Topology</button>
+    <button class="tab" data-tab="vibrational">Vibrational Spectra</button>
+    <button class="tab" data-tab="data">Data &amp; Citation</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============================ INTRODUCTION ============================ -->
+<section id="intro" class="panel active">
+  <h1>Lithium Polysulfide Speciation in Lithium–Sulfur Batteries</h1>
+  <p class="lede">A First-Principles Benchmark of Thermodynamics, Bonding, and Solvent Control</p>
+
+  <p class="authors" id="authors"></p>
+  <p class="affils" id="affils"></p>
+
+  <div class="callout">
+    This site lets you browse and download every dataset underlying the paper: optimized
+    molecular geometries, M06-2X and composite-CCSD energies, QTAIM and NBO bonding descriptors,
+    and the harmonic IR and Raman spectra of every species, with an interactive spectrum viewer, for the full
+    <span class="nowrap">Li<sub>y</sub>S<sub>x</sub><sup>q</sup></span>
+    matrix in two electrolyte solvents. It runs entirely in your browser with no server and no
+    network access; the underlying files can all be downloaded from the
+    <a href="#" data-goto="data">Data &amp; Citation</a> tab.
+  </div>
+
+  <h2>Abstract</h2>
+  <p class="abstract">Lithium–sulfur cycle life is limited by dissolved Li<sub>y</sub>S<sub>x</sub><sup>q</sup> polysulfides whose speciation remains disputed. We benchmark the
+  complete matrix (<em>y</em> = 0–2, <em>q</em> = 0 to −2, <em>x</em> = 1–8) in the gas phase, tetraglyme and
+  dimethyl sulfoxide: <span data-meta="data_all_rows">248</span> M06-2X/SMD thermochemistries,
+  <span data-meta="ccsd_rows">132</span> refined by single-point CCSD. The convex hull, S<sub>8</sub> →
+  Li<sub>2</sub>S<sub>6</sub> → Li<sub>2</sub>S<sub>4</sub> → Li<sub>2</sub>S<sub>3</sub> →
+  Li<sub>2</sub>S<sub>2</sub> → Li<sub>2</sub>S, is identical in both solvents, and every exergonic
+  long-chain comproportionation delivers Li<sub>2</sub>S<sub>6</sub>. QTAIM analysis of the CCSD densities separates
+  covalent S–S from electrostatic Li–S bonding, transferably between solvents. Solvation makes
+  S<sub>x</sub><sup>2−</sup> the dominant lithium-free charge state and places both legs of the shuttle on
+  that branch. Infrared and Raman spectra of prepared solutions test the vibrational predictions and track
+  the chain-length distribution through one band envelope. The open dataset is a calibrated reference for
+  force-field, machine-learned and continuum battery models.</p>
+
+  <h2>The Li<sub>y</sub>S<sub>x</sub><sup>q</sup> matrix</h2>
+  <div class="grid-3">
+    <div class="mini-card"><div class="mini-k">Families</div>
+      <div class="mini-v">Li<sub>2</sub>S<sub>x</sub> · LiS<sub>x</sub> · S<sub>x</sub></div>
+      <div class="mini-note"><em>n</em><sub>Li</sub> = 2, 1, 0</div></div>
+    <div class="mini-card"><div class="mini-k">Charge states</div>
+      <div class="mini-v">0 · −1 · −2</div>
+      <div class="mini-note">neutral, radical anion, dianion</div></div>
+    <div class="mini-card"><div class="mini-k">Chain lengths</div>
+      <div class="mini-v"><em>x</em> = 1 – 8</div>
+      <div class="mini-note">S atom to the S<sub>8</sub> crown</div></div>
+    <div class="mini-card"><div class="mini-k">Media</div>
+      <div class="mini-v">DMSO · TEGDME · gas</div>
+      <div class="mini-note">SMD, ε = 46.7 · 7.78 · 1</div></div>
+    <div class="mini-card"><div class="mini-k">Geometries &amp; frequencies</div>
+      <div class="mini-v">M06-2X / def2-TZVPPD / SMD</div>
+      <div class="mini-note">Gaussian 16</div></div>
+    <div class="mini-card"><div class="mini-k">Refined energies</div>
+      <div class="mini-v">composite CCSD</div>
+      <div class="mini-note">single-point on DFT geometries</div></div>
+  </div>
+
+  <h2>How the data is organised</h2>
+  <p>The paper distinguishes a <strong>main species set</strong> (Li<sub>2</sub>S<sub>x</sub> neutrals,
+  LiS<sub>x</sub><sup>−</sup>, and the full S<sub>x</sub><sup>0/•−/2−</sup> block) from an
+  <strong>SI set</strong> (the Li<sub>2</sub>S<sub>x</sub><sup>•−</sup> and Li<sub>2</sub>S<sub>x</sub><sup>2−</sup>
+  anions and neutral LiS<sub>x</sub><sup>•</sup> radicals), because a bare continuum over-stabilises multiply charged
+  solutes. Both sets are exposed here and labelled throughout. Of the <span data-meta="data_all_rows">248</span>
+  thermochemistries, <span data-meta="analysed_rows">202</span> enter the analysis (the 41 exploratory
+  <em>x</em> ≥ 9 rows, one duplicate row and four electrolyte rows computed outside their own medium do not) and <span data-meta="ccsd_rows">132</span> carry a composite-CCSD refinement.
+  A species is a radical when <em>n</em><sub>Li</sub> + |<em>q</em>| is odd, and is written with a dot
+  (S<sub>x</sub><sup>•−</sup>, Li<sub>2</sub>S<sub>x</sub><sup>•−</sup>, LiS<sub>x</sub><sup>•</sup>).</p>
+
+  <div class="callout warn">
+    <strong>Flagged entries.</strong> Data points that failed a validation check are retained with their
+    diagnostic and marked wherever they appear († in the tables here, as in the paper; the caveats
+    section of the paper's Methods and Supplementary Note 12 of its Supplementary Information, SI):
+    <ul>
+      <li>neutral LiS<sub>3</sub><sup>•</sup> in DMSO is not a minimum: the optimization terminated on a
+        C<sub>2v</sub> first-order saddle point with one imaginary mode at 60<em>i</em> cm<sup>−1</sup>, and no
+        minimum was located; its Gibbs energy is an upper bound, high by about 0.03 eV from the missing mode;</li>
+      <li>Li<sub>2</sub>S<sub>3</sub><sup>2−</sup> in DMSO is a suspect energy: its raw free energy lies above that
+        of the monoanion, inverting the TEGDME ordering; it is excluded from the redox-ladder figure and statistics;</li>
+      <li>LiS<sub>5</sub><sup>−</sup> in TEGDME is monodentate where every comparable species is bidentate and sits
+        0.9 eV above its own ladder; possibly a genuine coordination difference, so it is retained.</li>
+    </ul>
+    Two further points are notes rather than flags. The reference S<sub>8</sub> geometry is the D<sub>4d</sub> crown
+    (0.42 eV below the C<sub>s</sub> exo-endo ring at CCSD), and every number here uses it. The QTAIM densities of Li<sub>2</sub>S<sup>2−</sup> (both solvents) and
+    Li<sub>2</sub>S<sub>3</sub><sup>2−</sup> (DMSO) contain a non-nuclear attractor, a basin holding
+    1.07–1.65 e; with it counted, all <span data-meta="charge_systems">131</span> systems conserve charge, so it is
+    reported as a finding on the diffuse dianion density. The triplet S atom and S<sub>2</sub>, once run as
+    singlets, were recomputed as triplets and are included normally.
+  </div>
+</section>
+
+<!-- ============================ GEOMETRIES ============================ -->
+<section id="geometries" class="panel">
+  <h1>Optimized Geometries</h1>
+  <p class="sub">M06-2X/def2-TZVPPD/SMD optimized structures for every species in the matrix, in both
+  solvents (<span data-meta="geometries.DMSO">61</span> in DMSO, <span data-meta="geometries.TEGDME">61</span> in
+  TEGDME, from the CCSD/QTAIM decks). Coordinates in ångström. Colours: <span class="chip li">Li</span>
+  <span class="chip s">S</span>.</p>
+
+  <div class="controls">
+    <label>Species
+      <select id="geo-species"></select>
+    </label>
+    <label>Solvent
+      <select id="geo-solvent"></select>
+    </label>
+    <label>Representation
+      <span class="radio-row">
+        <label class="rad"><input type="radio" name="rep" value="ballstick" checked> Ball &amp; stick</label>
+        <label class="rad"><input type="radio" name="rep" value="stick"> Stick</label>
+      </span>
+    </label>
+  </div>
+
+  <div id="geo-meta" class="meta-line"></div>
+  <div id="geo-flag" class="callout warn" hidden></div>
+  <div id="geo-note" class="callout" hidden></div>
+
+  <div class="geo-grid">
+    <div>
+      <h3>3D structure</h3>
+      <div id="viewer" class="viewer"></div>
+      <p class="hint">Drag to rotate · scroll to zoom · right-drag to pan</p>
+    </div>
+    <div>
+      <h3>XYZ coordinates <button id="geo-download" class="btn small">Download .xyz</button></h3>
+      <pre id="geo-xyz" class="xyz"></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ENERGIES ============================ -->
+<section id="energies" class="panel">
+  <h1>Energies &amp; Thermodynamics</h1>
+  <p class="sub">Formation Gibbs energies ΔG<sub>form</sub> at M06-2X and composite-CCSD levels, referenced
+  in-solvent to Li, Li<sup>+</sup>, and S<sub>8</sub> (paper Eq. 2). The CCSD−DFT column is the deviation
+  inherited by downstream users; positive means DFT over-stabilisation (the paper's deviation, M06-2X − CCSD,
+  is its negative). Over the 128 benchmarked (M06-2X, CCSD) pairs, 64 per solvent, the mean absolute deviation is
+  0.189 eV in DMSO and 0.191 eV in TEGDME; the Li<sub>2</sub>S<sub>x</sub> ladders are biased by −0.30 eV in the
+  paper's convention (M06-2X − CCSD, i.e. +0.30 eV in the CCSD−DFT column here) and the
+  S<sub>x</sub><sup>2−</sup> dianions agree to 0.03 eV.</p>
+
+  <div class="controls">
+    <label>Search <input type="text" id="en-search" placeholder="e.g. Li2S6, dianion, flagged"></label>
+    <label>Solvent
+      <select id="en-solvent"><option value="">all</option><option>DMSO</option><option>TEGDME</option><option>GP</option></select>
+    </label>
+    <label>Set
+      <select id="en-set"><option value="">all</option><option value="main">main</option><option value="SI">SI</option></select>
+    </label>
+  </div>
+  <p class="hint">† flagged entry, ⓘ note; hover the mark for the diagnostic.</p>
+  <div class="table-wrap"><table id="en-table" class="data-table"></table></div>
+
+  <h2>Discharge voltages</h2>
+  <p class="sub">Average voltage of the 16-electron conversion S<sub>8</sub> + 16 Li → 8 Li<sub>2</sub>S (V),
+  computed from the tabulated Gibbs energies with the paper's own code (paper Table 2). The
+  <strong>bulk-lithium frame</strong> is the physically correct anode reference; the experimental cell voltage
+  is 2.30 V. The 1.2–1.3 V shortfall is the lattice stabilisation of crystalline Li<sub>2</sub>S, which a
+  solution-phase molecular model deliberately omits, not an electronic-structure error. The atomic frame sits
+  1.25 V higher (the solvation free energy of the Li atom plus the bulk cohesive energy); its proximity to
+  experiment is partly a cancellation and is not presented as agreement.</p>
+  <div class="table-wrap"><table id="volt-table" class="data-table narrow"></table></div>
+</section>
+
+<!-- ============================ QTAIM ============================ -->
+<section id="qtaim" class="panel">
+  <h1>Bonding &amp; Topology (QTAIM)</h1>
+  <p class="sub">Quantum Theory of Atoms in Molecules analysis of the CCSD relaxed densities in both
+  solvents: <span data-meta="bcps">777</span> bond critical points (<span data-meta="bcps_by_solvent.DMSO">383</span>
+  in DMSO, <span data-meta="bcps_by_solvent.TEGDME">394</span> in TEGDME) across
+  <span data-meta="bcp_systems">122</span> solvated systems. Covalent S–S bonds (shared-shell,
+  ∇²ρ &lt; 0, <em>H</em> &lt; 0) and electrostatic Li–S contacts (closed-shell) occupy disjoint regions
+  with an empty transit region; secondary S···S contacts are separated from the covalent bonds by a 0.76 Å gap
+  in distance. Terminal sulfurs carry −0.62 e against −0.12 e for internal ones, and the matched descriptors
+  agree between the solvents to 0.015 Å in distance and 0.0016 a.u. in density.</p>
+
+  <h2>Bond critical points</h2>
+  <div class="controls">
+    <label>Search <input type="text" id="bcp-search" placeholder="e.g. Li2S6, S7, dianion"></label>
+    <label>Solvent
+      <select id="bcp-solvent"><option value="">all</option><option>DMSO</option><option>TEGDME</option></select>
+    </label>
+    <label>Bond type
+      <select id="bcp-bond"><option value="">all</option></select>
+    </label>
+  </div>
+  <p class="hint" id="bcp-count"></p>
+  <p class="hint">Each row is one bond critical point; the <strong>Atoms</strong> column names the two atoms
+  (element + index). Click any row to highlight that bond in the 3D structure. The three S···NNA rows are bond
+  paths that end at a non-nuclear attractor rather than at an atom.</p>
+  <div class="bcp-split">
+    <div class="table-wrap bcp-tablewrap"><table id="bcp-table" class="data-table"></table></div>
+    <aside class="bcp-viewer-wrap" id="bcp-viewer-wrap">
+      <div id="bcp-viewer" class="bcp-viewer"></div>
+      <label class="bcp-toggle"><input type="checkbox" id="bcp-labels"> show atom numbers</label>
+      <p class="bcp-viewer-meta" id="bcp-viewer-meta">Click a bond row to highlight it in 3D.</p>
+    </aside>
+  </div>
+
+  <h2>NBO donor→acceptor channels</h2>
+  <p class="sub">Second-order perturbation energies E<sup>(2)</sup> (kcal/mol) by element channel and
+  solvent (NBO 3.1 on the M06-2X/def2-TZVPPD/SMD wavefunctions; <span data-meta="nbo_poly_rows">591</span> polysulfide interactions over
+  <span data-meta="nbo_poly_species">69</span> species; the TFSI<sup>−</sup> reference rows are in the CSV
+  files but not in this table, which matches Supplementary Table 34 of the paper). Lithium
+  participates almost exclusively as an acceptor: sulfur lone pairs donate into empty Li orbitals with a median
+  near 13–14 kcal/mol in both solvents, the modest dative character of an essentially ionic contact. No Li–S
+  bonding orbital exists in any main-set species; weak Li–S bonding orbitals appear only in three reduced
+  SI-set anions (Supplementary Note 11). The S<sub>8</sub> rows are those of the
+  D<sub>4d</sub> crown in both solvents; each molecule
+  contributes every interaction of at least half its largest E<sup>(2)</sup>.</p>
+  <div class="table-wrap"><table id="nbo-table" class="data-table narrow"></table></div>
+</section>
+
+<!-- ============================ VIBRATIONAL ============================ -->
+<section id="vibrational" class="panel">
+  <h1>Vibrational Spectra</h1>
+  <p class="sub">Harmonic IR and Raman spectra (M06-2X/def2-TZVPPD/SMD) of all 37 solution species in both
+  solvents, with the two solvent molecules and the TFSI<sup>−</sup> counter-ion as interference references:
+  <span data-meta="modes">977</span> normal modes in all. Frequencies follow the paper's two-domain convention.
+  The solvent and TFSI<sup>−</sup> modes are scaled by 0.96 (the least-squares fit to 19 measured neat-solvent
+  infrared bands gives 0.963, mean absolute deviation 7 cm<sup>−1</sup>); the polysulfide bands are reported unscaled and carry a measured systematic of 20 to 30 cm<sup>−1</sup>
+  from the two S–S anchors that bracket the fingerprint window, the strongest Raman mode of the S<sub>8</sub> crown
+  (implied factor 0.94) and the S<sub>3</sub><sup>•−</sup> stretch measured by resonance Raman in TEGDME
+  solutions (0.959). For 30 of the 37 species in DMSO the dominant Raman band falls between 395 and
+  585 cm<sup>−1</sup>, a window free of strong electrolyte interference.</p>
+
+  <h2>Per-species spectra</h2>
+  <p class="sub">Every normal mode of the selected species as a stick, with a Lorentzian envelope, in one or
+  both solvents (DMSO solid, TEGDME dashed), under either frequency convention. Hover a stick for its
+  frequency in both conventions, its activity and its symmetry label; the table below lists every mode and
+  both downloads work offline.</p>
+  <div class="controls mv-controls">
+    <label>Species
+      <span class="range-row">
+        <button id="mv-prev" class="btn small ghost" type="button" title="previous species (←)">◀</button>
+        <select id="mv-species"></select>
+        <button id="mv-next" class="btn small ghost" type="button" title="next species (→)">▶</button>
+      </span>
+    </label>
+    <label>Spectrum
+      <select id="mv-kind"><option value="both">IR + Raman</option><option value="ir">IR</option><option value="raman">Raman</option></select>
+    </label>
+    <label>Solvent
+      <select id="mv-solvent"><option value="both">DMSO + TEGDME</option><option>DMSO</option><option>TEGDME</option></select>
+    </label>
+    <label>Frequency convention
+      <select id="mv-conv">
+        <option value="paper">paper: polysulfides unscaled, solvents/TFSI⁻ ×0.96</option>
+        <option value="harmonic">all unscaled harmonic</option>
+        <option value="scaled">all ×0.96</option>
+      </select>
+    </label>
+    <label>Lorentzian half-width
+      <span class="range-row"><input type="range" id="mv-gamma" min="2" max="12" step="0.5" value="6"> <span id="mv-gamma-val" class="mono">6 cm⁻¹</span></span>
+    </label>
+    <label>Range (cm⁻¹)
+      <span class="range-row"><input type="number" id="mv-xmin" class="num" value="20" step="10" min="0"> – <input type="number" id="mv-xmax" class="num" value="800" step="10"> <button id="mv-fit" class="btn small ghost" type="button" title="fit the range to every mode of the species">fit</button></span>
+    </label>
+  </div>
+  <div class="mv-plot" id="mv-plot">
+    <svg id="mv-svg" class="mv-svg" viewBox="0 0 760 480" role="img" aria-label="Predicted vibrational spectrum"></svg>
+    <div id="mv-tip" class="mv-tip" hidden></div>
+  </div>
+  <div class="mv-legend" id="mv-legend"></div>
+  <p class="hint">Sticks: harmonic IR intensity (km/mol) or Raman activity (Å⁴/amu) of each mode. Envelope:
+  sum of Lorentzians whose peak equals each stick, so an isolated band reads as its activity. The paper's
+  synthetic spectra use 638 nm scattering intensities rather than activities. ← / → step through species.</p>
+  <div class="mv-actions">
+    <button id="mv-csv" class="btn small" type="button">⬇ Download modes (.csv)</button>
+    <button id="mv-svg-dl" class="btn small" type="button">⬇ Download figure (.svg)</button>
+  </div>
+  <div class="table-wrap"><table id="mv-table" class="data-table"></table></div>
+
+  <h2>Dominant bands (cm<sup>−1</sup>)</h2>
+  <p class="sub">Strongest Raman and IR band of every solution species, unscaled harmonic with the ×0.96 value in
+  parentheses (Supplementary Table 26 of the paper).</p>
+  <div class="controls">
+    <label>Search <input type="text" id="vib-search" placeholder="e.g. S6, dianion"></label>
+  </div>
+  <div class="table-wrap"><table id="vib-table" class="data-table"></table></div>
+
+  <h2>Electrolyte reference bands</h2>
+  <p class="sub">Strongest bands of the interference species (×0.96), defining the regions to avoid in
+  <em>operando</em> assignment.</p>
+  <div class="table-wrap"><table id="vibref-table" class="data-table narrow"></table></div>
+</section>
+
+<!-- ============================ DATA & CITATION ============================ -->
+<section id="data" class="panel">
+  <h1>Data &amp; Citation</h1>
+
+  <h2>Download the data</h2>
+  <p class="sub">Every file below is the canonical export underlying the paper. Grab the complete bundle,
+  or individual files.</p>
+  <p><a class="btn" href="data/all_data.zip" download>⬇ Download everything (all_data.zip)</a>
+  <a class="btn small" href="data/DATA_DICTIONARY.md" download>📖 Data dictionary (columns &amp; units)</a></p>
+  <p class="sub">Every numeric column carries its unit in the column name
+  (<code>_Ha</code>, <code>_eV</code>, <code>_kcal_mol</code>, <code>_Ang</code>,
+  <code>_au</code>, <code>_e</code>, <code>_cm1</code>, <code>_km_mol</code>, <code>_A4_amu</code>). Note that
+  <code>data_all.csv</code> mixes unit systems by column: every energy is in
+  Hartree except <code>HOMO_eV</code>.</p>
+
+  <div class="dl-grid">
+    <div class="dl-card">
+      <h3>Geometries</h3>
+      <p>Optimized XYZ structures, one file per species and solvent: <span data-meta="geometries.DMSO">61</span>
+      in <code>data/geometries/DMSO/</code> and <span data-meta="geometries.TEGDME">61</span> in
+      <code>data/geometries/TEGDME/</code>, inside the bundle. Single files download from the
+      <a href="#" data-goto="geometries">Optimized Geometries</a> tab.</p>
+    </div>
+    <div class="dl-card">
+      <h3>Energies &amp; thermodynamics</h3>
+      <ul class="dl-list">
+        <li><a href="data/energies/data_all.csv" download>data_all.csv</a> — raw thermochemistry (<span data-meta="data_all_rows">248</span> rows, three media)</li>
+        <li><a href="data/energies/polysulfide_thermodynamics_summary.csv" download>polysulfide_thermodynamics_summary.csv</a> — formation energies at both levels</li>
+        <li><a href="data/energies/electrolyte_solvation.csv" download>electrolyte_solvation.csv</a> — solvation free energies of the electrolyte species</li>
+      </ul>
+    </div>
+    <div class="dl-card">
+      <h3>QTAIM</h3>
+      <ul class="dl-list">
+        <li><a href="data/qtaim/qtaim_bcp_final.csv" download>qtaim_bcp_final.csv</a> — <span data-meta="bcps">777</span> bond critical points</li>
+        <li><a href="data/qtaim/qtaim_charges_final.csv" download>qtaim_charges_final.csv</a> — atomic (and non-nuclear) basin charges</li>
+        <li><a href="data/qtaim/qtaim_charge_summary_final.csv" download>qtaim_charge_summary_final.csv</a></li>
+        <li><a href="data/qtaim/qtaim_ss_summary_final.csv" download>qtaim_ss_summary_final.csv</a></li>
+      </ul>
+    </div>
+    <div class="dl-card">
+      <h3>NBO</h3>
+      <ul class="dl-list">
+        <li><a href="data/nbo/nbo_all_full.csv" download>nbo_all_full.csv</a> — <span data-meta="nbo_rows">601</span> donor→acceptor interactions, both solvents</li>
+        <li>per-channel splits: <a href="data/nbo/nbo_DMSO_SLi.csv" download>DMSO S→Li</a>, <a href="data/nbo/nbo_DMSO_SS.csv" download>DMSO S→S</a>, <a href="data/nbo/nbo_DMSO_LiS.csv" download>DMSO Li→S</a>, <a href="data/nbo/nbo_DMSO_LiLi.csv" download>DMSO Li→Li</a>, <a href="data/nbo/nbo_TEGDME_SLi.csv" download>TEGDME S→Li</a>, <a href="data/nbo/nbo_TEGDME_SS.csv" download>TEGDME S→S</a>, <a href="data/nbo/nbo_TEGDME_LiS.csv" download>TEGDME Li→S</a>, <a href="data/nbo/nbo_TEGDME_LiLi.csv" download>TEGDME Li→Li</a></li>
+      </ul>
+    </div>
+    <div class="dl-card">
+      <h3>Vibrational</h3>
+      <ul class="dl-list">
+        <li><a href="data/vibrational/modes_all.csv" download>modes_all.csv</a> — every harmonic normal mode (<span data-meta="modes">977</span> rows: frequency, IR intensity, Raman activity, symmetry), the table behind the viewer</li>
+        <li><a href="data/vibrational/dominant_summary.csv" download>dominant_summary.csv</a> — strongest band per species (×0.96)</li>
+        <li><a href="data/vibrational/fingerprint_raman_DMSO.csv" download>fingerprint_raman_DMSO.csv</a>, <a href="data/vibrational/fingerprint_raman_TEGDME.csv" download>fingerprint_raman_TEGDME.csv</a>, <a href="data/vibrational/fingerprint_ir_DMSO.csv" download>fingerprint_ir_DMSO.csv</a>, <a href="data/vibrational/fingerprint_ir_TEGDME.csv" download>fingerprint_ir_TEGDME.csv</a> — top three bands per species</li>
+        <li><a href="data/vibrational/reference_band_peaks.csv" download>reference_band_peaks.csv</a> — electrolyte reference bands</li>
+        <li><a href="data/vibrational/diagnostic_peaks_DMSO.csv" download>diagnostic_peaks_DMSO.csv</a>, <a href="data/vibrational/diagnostic_peaks_TEGDME.csv" download>diagnostic_peaks_TEGDME.csv</a> — bands unique to a species against the reference set</li>
+        <li><a href="data/vibrational/raman_solution_bands.csv" download>raman_solution_bands.csv</a>, <a href="data/vibrational/s3_anchor.csv" download>s3_anchor.csv</a> — the measured S<sub>3</sub><sup>•−</sup> progression and the scale-factor anchor</li>
+        <li><a href="data/vibrational/functional_ladder_check.csv" download>functional_ladder_check.csv</a>, <a href="data/vibrational/functional_ladder_verdicts.csv" download>functional_ladder_verdicts.csv</a>, <a href="data/vibrational/chain_length_snapshot_weights.csv" download>chain_length_snapshot_weights.csv</a></li>
+      </ul>
+    </div>
+    <div class="dl-card">
+      <h3>Extra SI figures</h3>
+      <p>Figures the SI text deposits with the data (<span data-meta="extra_figures">15</span> PDFs
+      in <code>data/si_extra_figures/</code>): the Li<sub>2</sub>S<sub>x</sub> frequency benchmarks and the
+      atomic-participation-ratio heatmaps, of which the SI prints the Li<sub>2</sub>S<sub>8</sub> members.</p>
+      <ul class="dl-list" id="extra-figs"></ul>
+    </div>
+  </div>
+
+  <h2>How to cite</h2>
+  <p>Please cite the paper this dataset accompanies. It is posted as a preprint on ChemRxiv (DOI added on posting); BibTeX:</p>
+  <pre class="cite" id="bibtex"></pre>
+
+  <h2>Data availability statement</h2>
+  <p class="abstract">The computed data underlying this work are in this repository: the complete
+  thermochemistry and per-species formation-energy tables, the QTAIM and NBO exports, the vibrational mode
+  tables and the optimized geometries. The measured infrared and Raman spectra are available from the
+  corresponding authors on request. The computed data files are archived at Zenodo (DOI added
+  on posting). The flagged data points are marked here exactly as described in the paper (the caveats
+  section of the Methods and Supplementary Note 12): <span id="flag-list"></span>.</p>
+
+  <h2>License &amp; contact</h2>
+  <p>Data are released under <strong>CC-BY-4.0</strong>; the site code under the MIT license, the vendored 3Dmol.js
+  library under its BSD-3-Clause license. Corresponding
+  authors: Ricardo Gargano and Kayla G. Sprenger.</p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <span>Li – cyan <code>#69F8F7</code> · S – yellow <code>#FFFF27</code></span>
+  <span>Geometries &amp; frequencies: M06-2X/def2-TZVPPD/SMD · Energies: composite CCSD · Gaussian 16 · Multiwfn 3.8 · NBO 3.1</span>
+</footer>
+
+<script src="assets/js/3Dmol-min.js"></script>
+<script src="assets/js/data/geometries.js"></script>
+<script src="assets/js/data/energies.js"></script>
+<script src="assets/js/data/aux.js"></script>
+<script src="assets/js/data/qtaim.js"></script>
+<script src="assets/js/data/vibrational.js"></script>
+<script src="assets/js/data/vib_modes.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

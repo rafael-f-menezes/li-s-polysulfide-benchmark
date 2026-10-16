@@ -1,0 +1,9 @@
+source,functional,basis,ladder_x2_to_x8,delta78_cm1,verdict_x7_vs_x8,descending_pairs,any_widened_window
+calcs2_gas,B3LYP,def2-TZVP,562/495/485/486/493/487/495,-8.0,monotonic,2>3;3>4;6>7,False
+calcs2_gas,B3LYP,cc-pVTZ,558/492/481/526/490/483/491,-8.3,monotonic,2>3;3>4;5>6;6>7,False
+calcs2_gas,M06-2X,def2-TZVP,572/491/509/520/486/523/523,0.7,degenerate,2>3;5>6;7>8,True
+calcs2_gas,M06-2X,cc-pVTZ,568/487/504/518/520/518/516,2.0,degenerate,2>3;6>7;7>8,False
+calcs2_gas,wB97X-D,def2-TZVP,548/482/510/506/520/521/517,3.3,inversion,2>3;4>5;7>8,False
+calcs2_gas,wB97X-D,cc-pVTZ,545/481/506/504/519/520/518,2.5,inversion,2>3;4>5;7>8,False
+production_gas,M06-2X,def2-TZVPPD,570/491/507/518/484/523/522,0.7,degenerate,2>3;5>6;7>8,True
+production_TEGDME_SMD,M06-2X,def2-TZVPPD,489/480/497/503/509/521/512,8.5,inversion,2>3;7>8,False
