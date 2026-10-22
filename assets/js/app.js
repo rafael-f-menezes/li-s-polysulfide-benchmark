@@ -34,7 +34,8 @@
     "             and Landetta Espinoza, Jared and Costa, Ana and Colclasure, Andrew\n" +
     "             and Gargano, Ricardo and Sprenger, Kayla G.},\n" +
     "  journal = {ChemRxiv},\n" +
-    "  note    = {preprint; DOI added on posting},\n" +
+    "  doi     = {10.26434/chemrxiv.15010681/v1},\n" +
+    "  url     = {https://doi.org/10.26434/chemrxiv.15010681/v1},\n" +
     "  year    = {2026}\n" +
     "}";
 

@@ -91,9 +91,9 @@ the analysis code is available from the corresponding authors on request.
 
 ## Citation
 
-The paper is posted as a preprint on ChemRxiv (DOI added on posting); a BibTeX entry is on the site's
-*Data & Citation* tab. Please cite the paper when using these data. The data files of release v1.0.0 are
-archived at Zenodo: https://doi.org/10.5281/zenodo.23421308.
+The paper is posted as a preprint on ChemRxiv (https://doi.org/10.26434/chemrxiv.15010681/v1); a BibTeX
+entry is on the site's *Data & Citation* tab. Please cite the paper when using these data. The data files of
+release v1.0.0 are archived at Zenodo: https://doi.org/10.5281/zenodo.23421308.
 
 ## License
 
